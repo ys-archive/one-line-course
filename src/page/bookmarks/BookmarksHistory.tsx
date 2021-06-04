@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 
 import GridLectureCard from "~/src/component/lecture-card/GridLectureCard";
+import LectureCardPopup from "~/src/component/lecture-card/LectureCardPopup";
 import { TCombinedStates } from "~/src/store";
 import { IBookmarkData, ILectureData } from "~/src/typings";
 
@@ -35,6 +36,7 @@ const BookmarksHistory = () => {
     () =>
       allDatesYMD &&
       allMyBookmarks &&
+      lectures &&
       allDatesYMD.map((date: string) => (
         <div key={uuid()} className="bookmarksHistory--one-day">
           <p className="bookmarksHistory--created-at">{date}</p>
@@ -44,16 +46,24 @@ const BookmarksHistory = () => {
               const comparerYMD = bookmark.createdAt.toString().slice(0, 10);
               return comparerYMD === date;
             })
-            .map((bookmark: IBookmarkData, i: number) => (
-              <div key={bookmark.id} className="bookmarksHistory--lecture">
-                <GridLectureCard
-                  lecture={lectures.find(
-                    (lecture: ILectureData) => lecture.id === bookmark.lectureId
-                  )}
-                  popupIdx={i}
-                />
-              </div>
-            ))}
+            .map((bookmark: IBookmarkData, i: number) => {
+              console.log("created!");
+
+              const lec = lectures.find(
+                (lecture: ILectureData) => lecture.id === bookmark.lectureId
+              );
+              if (!lec) return null;
+
+              return (
+                <div
+                  key={bookmark.id!}
+                  className="bookmarksHistory--lecture"
+                  onClick={_ => window.open(lec.url!, "_blank")}
+                >
+                  <GridLectureCard lecture={lec} popupIdx={i} />
+                </div>
+              );
+            })}
         </div>
       )),
     [allMyBookmarks, allDatesYMD, lectures]

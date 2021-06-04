@@ -36,11 +36,19 @@
         &.active {
           background-color: $color-warning;
         }
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       .keywords {
         &.active {
           background-color: $color-selected;
+        }
+
+        &:hover {
+          cursor: pointer;
         }
       }
 

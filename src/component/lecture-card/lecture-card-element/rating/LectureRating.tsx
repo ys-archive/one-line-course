@@ -10,7 +10,7 @@ interface ILectureRatingProps {
 const LectureRating: React.FC<ILectureRatingProps> = ({ rating }) => (
   <div className="lectureCard--rating">
     {getIcon("Star", undefined, { marginRight: "10px" })}
-    <p>{rating.toFixed(1)} / 5.0</p>
+    <p>{rating.toFixed(1)}</p>
   </div>
 );
 

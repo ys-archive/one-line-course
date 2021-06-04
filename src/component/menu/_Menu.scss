@@ -11,6 +11,10 @@
   justify-content: center;
   align-items: center;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .menu {
     width: 30px;
   }

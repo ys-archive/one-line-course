@@ -57,12 +57,7 @@ const LectureCardPopup: React.FC<ILectureCardPopupProps> = ({
   const lecturePopupInfoJSX = useMemo(
     () => (
       <>
-        <LectureBookmark
-          lectureId={id}
-          // isUpdated={isBookmarkUpdated}
-          // setIsUpdated={setIsBookmarkUpdated}
-          isOnlyDisplay={false}
-        />
+        <LectureBookmark lectureId={id} isOnlyDisplay={false} />
         <LectureThumbnail imageURL={imageUrl} title={title} isCard={false} />
         <div className="lectureCard-separator"></div>
         <div className="lectureCard-grid-desc">
@@ -75,7 +70,7 @@ const LectureCardPopup: React.FC<ILectureCardPopupProps> = ({
               <LectureViewCount viewCount={viewCount} />
               <LectureSessionCount sessionCount={sessionCount} />
             </div>
-            <div className="lectureCard-grid-cl3">
+            <div className="lectureCard-grid--cl3">
               <LecturePrice price={actualPrice} currency={currency} />
               <LectureLanguage language={language} />
             </div>

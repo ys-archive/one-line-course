@@ -70,9 +70,10 @@ const makeBookmarkIcon = ({
 
       // await fetchUpdatedAllMyBookmarks(userID);
 
-      const prvBookmark = allMyBookmarks.find(
-        (bookmark: IBookmarkData) => bookmark.lectureId === lectureId
-      )!;
+      const isMyBookmark =
+        allMyBookmarks.findIndex(
+          (bookmark: IBookmarkData) => bookmark.lectureId === lectureId
+        )! !== -1;
 
       // if (!prvBookmark) {
       //   return;
@@ -83,7 +84,7 @@ const makeBookmarkIcon = ({
 
       // console.log("automatically updated my bookmarks", usedBookmark);
       // enable the icon
-      if (prvBookmark) {
+      if (isMyBookmark) {
         setIsBookmarkEnabled(true);
       } else {
         setIsBookmarkEnabled(false);

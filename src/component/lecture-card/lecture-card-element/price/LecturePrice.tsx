@@ -24,7 +24,7 @@ const LecturePrice: React.FC<ILecturePriceProps> = ({ price, currency }) => {
     default:
       currencyID = "Won-Sign";
       //  3 단위 ,
-      finalPrice = price === 0 ? "무료" : `${price} 원`;
+      finalPrice = price === 0 ? "무료" : price;
       break;
   }
 

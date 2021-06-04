@@ -8,10 +8,10 @@ interface ILectureViewCountProps {
 }
 
 const LectureViewCount: React.FC<ILectureViewCountProps> = ({ viewCount }) => (
-  <>
+  <div>
     {getIcon("Users", undefined, { marginRight: "10px" })}
-    {viewCount} 명
-  </>
+    {viewCount}
+  </div>
 );
 
 export default LectureViewCount;

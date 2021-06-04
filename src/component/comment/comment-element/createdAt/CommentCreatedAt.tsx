@@ -9,7 +9,8 @@ interface ICommentCreatedAtProps {
 // Show only Date & times
 const CommentCreatedAt: React.FC<ICommentCreatedAtProps> = ({ createdAt }) => (
   <div className="comment--created-at">
-    {new String(createdAt).slice(0, 25)}
+    <p>{new String(createdAt).slice(0, 10)}</p>
+    {new String(createdAt).slice(11, 25)}
   </div>
 );
 

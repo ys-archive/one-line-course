@@ -13,6 +13,7 @@ import Menu from "~/src/component/menu/Menu";
 import { placeIconsRandomly, USERID_SESSION_STORAGE_KEY } from "../../common/";
 
 import "./_Bookmarks.scss";
+import { GridViewCtxProvider } from "~/src/context/GridViewCtx";
 
 const Bookmarks = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,9 @@ const Bookmarks = () => {
     <div>
       <NavFactory navType={ENavType.Main} highlightBtnIdx={2} />
       <div className="page bookmarks">
-        <BookmarksHistory />
+        <GridViewCtxProvider>
+          <BookmarksHistory />
+        </GridViewCtxProvider>
         <GoToTop />
         <Menu menuMode={EMenuMode.Others} />
         {placeIconsRandomly(30, { fontSize: "2rem" })}

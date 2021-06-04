@@ -15,7 +15,7 @@ export const GridViewCtx = React.createContext<GridViewCtxState>({
 export const GridViewCtxProvider: React.FC<{
   children: JSX.Element;
 }> = ({ children }) => {
-  const [currentPopup, setCurrentPopup] = useState(0);
+  const [currentPopup, setCurrentPopup] = useState(-1);
 
   const providerValue = {
     popupIdx: currentPopup,

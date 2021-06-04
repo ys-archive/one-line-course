@@ -26,6 +26,7 @@ const GridLectureCard: React.FC<IGridLectureCardProps> = ({
   lecture,
   popupIdx,
 }) => {
+  
   const {
     id,
     imageUrl,

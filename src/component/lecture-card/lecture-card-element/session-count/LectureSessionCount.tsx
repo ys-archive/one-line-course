@@ -10,10 +10,10 @@ interface ILectureSessionCountProps {
 const LectureSessionCount: React.FC<ILectureSessionCountProps> = ({
   sessionCount,
 }) => (
-  <>
+  <div>
     {getIcon("Lectures", undefined, { marginRight: "10px" })}
-    {sessionCount === 1 ? "단일 강좌" : `${sessionCount} 개`}
-  </>
+    {sessionCount === 1 ? "단일 강좌" : sessionCount}
+  </div>
 );
 
 export default LectureSessionCount;
