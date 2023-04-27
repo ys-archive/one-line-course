@@ -7,7 +7,7 @@ import KakaoOAuth from "./KakaoOAuth";
 
 const AuthCtrl: React.FC = () => (
   <div className="authCtrl">
-    {/* <GoogleOAuth /> */}
+    <GoogleOAuth />
     <KakaoOAuth />
   </div>
 );
