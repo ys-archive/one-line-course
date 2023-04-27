@@ -9,7 +9,8 @@ export interface ViewModeCtxState {
 
 const ViewModeCtx = React.createContext<ViewModeCtxState>({
   isGrid: true,
-  toggleViewMode: () => {},
+  toggleViewMode: () => {
+  },
 });
 
 export const ViewModeCtxProvider: React.FC<{

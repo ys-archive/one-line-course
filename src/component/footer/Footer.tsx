@@ -1,8 +1,8 @@
 import React from "react";
 
-import FooterDevCard from "./footer-dev-card/FooterDevCard";
-
 import "./_Footer.scss";
+
+import FooterDevCard from "./footer-dev-card/FooterDevCard";
 
 const Footer: React.FC = () => (
   <div className="footer">

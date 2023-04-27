@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
+import React, { MouseEventHandler } from "react";
 import { joinClasses } from "./";
-import { IconClassNames } from "./IconsResources";
 
 import "./_Icons.scss";
+import { IconClassNames } from "./IconsResources";
 
 type TIconStyles = { [propName: string]: string | number };
 
@@ -14,19 +14,21 @@ type TIconStyles = { [propName: string]: string | number };
  */
 export const getIconJSX = (
   iconName: string,
-  onClick?: ((e: React.MouseEvent<HTMLElement>) => void) | (() => void),
+  onClick?: MouseEventHandler<HTMLElement>,
   additionalStyles?: TIconStyles,
   additionalAttributes?: any
 ) => {
   const classNames = IconClassNames.get(iconName.trim());
-  return classNames ? (
+  if (!classNames) return null;
+
+  return (
     <i
       className={joinClasses("icon", ...classNames)}
       style={additionalStyles}
       onClick={onClick}
       {...additionalAttributes}
     />
-  ) : null;
+  );
 };
 
 export const placeIconsJSXRandomly = (

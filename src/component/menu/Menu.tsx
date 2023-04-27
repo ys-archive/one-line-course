@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { EMenuMode } from "../../typings";
 
-import MenuHamburger from "./MenuHamburger";
+import "./_Menu.scss";
 import MenuBar from "./menu-bar/MenuBar";
 
-import "./_Menu.scss";
+import MenuHamburger from "./MenuHamburger";
 
 interface MenuProps {
   menuMode: EMenuMode;
@@ -13,10 +13,8 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = ({ menuMode = EMenuMode.Main }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const onClickMenu = useCallback(
-    (_: React.MouseEvent<HTMLDivElement>) => setIsMenuOpen(prv => !prv),
-    [setIsMenuOpen]
-  );
+  const onClickMenu = (_: React.MouseEvent<HTMLDivElement>) =>
+    setIsMenuOpen((prv) => !prv);
 
   return (
     <div className="menu-placer">

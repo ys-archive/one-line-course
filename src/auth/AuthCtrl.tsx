@@ -1,17 +1,15 @@
 import React from "react";
 
+import "./_Auth.scss";
+
 import GoogleOAuth from "./GoogleOAuth";
 import KakaoOAuth from "./KakaoOAuth";
 
-import "./_Auth.scss";
-
-const AuthCtrl: React.FC<{}> = () => {
-  return (
-    <div className="authCtrl">
-      <GoogleOAuth />
-      <KakaoOAuth />
-    </div>
-  );
-};
+const AuthCtrl: React.FC = () => (
+  <div className="authCtrl">
+    {/* <GoogleOAuth /> */}
+    <KakaoOAuth />
+  </div>
+);
 
 export default AuthCtrl;

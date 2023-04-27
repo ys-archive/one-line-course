@@ -56,6 +56,7 @@ export enum ESeparatorDirection {
 }
 
 export type TCurrency = "₩" | "$" | "￦";
+
 export interface ILectureData {
   id: number;
   imageUrl: string;
@@ -213,6 +214,7 @@ export enum ECommentAsync_QueryAllComments_ActionType {
 }
 
 export enum ECommentActionType {}
+
 // Set_ImageURL ="SET_COMMENT_IMAGE_URL",
 // Set_UserName = "SET_COMMENT_USER_NAME",
 // Set_Contents = "SET_COMMENT_CONTENTS",

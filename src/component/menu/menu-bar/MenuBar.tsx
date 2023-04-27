@@ -1,10 +1,11 @@
 import React from "react";
 
-import { EMenuMode, ESeparatorDirection } from "../../../typings";
+import { getIcon, joinClasses } from "../../../common";
+import Separator from "../../../component/separator/Separator";
 
 import {
-  useDarkModeContext,
   DarkModeCtxState,
+  useDarkModeContext,
 } from "../../../context/DarkModeCtx";
 
 import {
@@ -12,8 +13,7 @@ import {
   ViewModeCtxState,
 } from "../../../context/ViewModeCtx";
 
-import { joinClasses, getIcon } from "../../../common";
-import Separator from "../../../component/separator/Separator";
+import { EMenuMode, ESeparatorDirection } from "../../../typings";
 
 import "./_MenuBar.scss";
 
@@ -37,20 +37,20 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuMode, isMenuOpen }) => {
   );
 };
 
+const iconBasicStyles = {
+  fontSize: "1.8rem",
+  boxSize: "border-box",
+  borderRadius: "10px",
+  transition: "0.5s ease-in-out",
+};
+
+const indicatorBorder = "2px dashed #b2b2b2";
+
 const makeMenuBarItems = (
   menuMode: EMenuMode,
   darkModeCtx: DarkModeCtxState,
   viewModeCtx: ViewModeCtxState
 ): JSX.Element => {
-  const iconBasicStyles = {
-    fontSize: "1.8rem",
-    boxSize: "border-box",
-    borderRadius: "10px",
-    transition: "0.5s ease-in-out",
-  };
-
-  const indicatorBorder = "2px dashed #b2b2b2";
-
   const darkIndicatorForSun = {
     border: !darkModeCtx.isDark ? indicatorBorder : "0",
   };

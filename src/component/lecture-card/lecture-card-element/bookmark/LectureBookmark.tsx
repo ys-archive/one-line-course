@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIcon, USERID_SESSION_STORAGE_KEY } from "~/src/common";
 import { TCombinedStates } from "~/src/store";
@@ -16,39 +16,29 @@ interface ILectureBookmarkProps {
   isOnlyDisplay: boolean;
 }
 
-const LectureBookmark: React.FC<ILectureBookmarkProps> = props => {
-  const jsx = makeBookmarkIcon(props);
-  return <div className="lectureCard--bookmark">{jsx}</div>;
-};
+const LectureBookmark: React.FC<ILectureBookmarkProps> = (props) => (
+  <div className="lectureCard--bookmark">{makeBookmarkIcon(props)}</div>
+);
 
 const makeBookmarkIcon = ({
   lectureId,
   isOnlyDisplay = true,
 }: ILectureBookmarkProps) => {
   const dispatch = useDispatch();
-
   const [isBookmarkEnabled, setIsBookmarkEnabled] = useState(false);
 
-  const addBookmark = useCallback(
-    (userID: string, usedBookmark: IBookmarkData) =>
-      dispatch(initFetch_AddBookmark(userID, usedBookmark)),
-    []
-  );
+  const addBookmark = (userID: string, usedBookmark: IBookmarkData) =>
+    dispatch(initFetch_AddBookmark(userID, usedBookmark));
 
-  const deleteBookmark = useCallback(
-    (targetBookmarkId: number) =>
-      dispatch(initFetch_RemoveBookmark(targetBookmarkId)),
-    []
-  );
+  const deleteBookmark = (targetBookmarkId: number) =>
+    dispatch(initFetch_RemoveBookmark(targetBookmarkId));
 
   const allMyBookmarks = useSelector(
     (state: TCombinedStates) => state.userAsync_QueryAllMyBookmarks.bookmarks
   );
 
-  const fetchUpdatedAllMyBookmarks = useCallback(
-    async (userID: string) => dispatch(initFetch_QueryAllMyBookmarks(userID)),
-    []
-  );
+  const fetchUpdatedAllMyBookmarks = async (userID: string) =>
+    dispatch(initFetch_QueryAllMyBookmarks(userID));
 
   let usedBookmark: IBookmarkData = {
     lectureId: lectureId!,
@@ -91,7 +81,7 @@ const makeBookmarkIcon = ({
     })();
   }, []);
 
-  const _addBookmark = useCallback(async () => {
+  const _addBookmark = async () => {
     if (isOnlyDisplay) {
       return;
     }
@@ -118,9 +108,9 @@ const makeBookmarkIcon = ({
     await addBookmark(userID, usedBookmark);
     await fetchUpdatedAllMyBookmarks(userID);
     // setIsUpdated(true);
-  }, [usedBookmark, allMyBookmarks]);
+  };
 
-  const _deleteBookmark = useCallback(async () => {
+  const _deleteBookmark = async () => {
     if (isOnlyDisplay) {
       return;
     }
@@ -151,9 +141,9 @@ const makeBookmarkIcon = ({
     await deleteBookmark(targetBookmarkId);
     await fetchUpdatedAllMyBookmarks(userID);
     // setIsUpdated(true);
-  }, [allMyBookmarks]);
+  };
 
-  const toggleBookmarkIcon = useCallback(() => {
+  const toggleBookmarkIcon = () => {
     if (isOnlyDisplay) {
       return;
     }
@@ -164,15 +154,13 @@ const makeBookmarkIcon = ({
       _addBookmark();
     }
 
-    setIsBookmarkEnabled(prv => !prv);
-  }, [isBookmarkEnabled, isOnlyDisplay, allMyBookmarks]);
+    setIsBookmarkEnabled((prv) => !prv);
+  };
 
   const BookmarkIcon_Disabled = getIcon(
     "Bookmark-Disabled",
     toggleBookmarkIcon,
-    {
-      fontSize: "2rem",
-    }
+    { fontSize: "2rem" }
   );
 
   const BookmarkIcon_Enabled = getIcon("Bookmark-Enabled", toggleBookmarkIcon, {
